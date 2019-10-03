@@ -1,0 +1,32 @@
+---
+title: "Cold Call Function"
+author: "Pieter Quinton"
+date: "10/3/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(googlesheets4)
+
+
+library(tidyverse)
+library(dplyr)
+library(janitor)
+```
+
+```{r cold_call}
+cold_call <- function(){
+  sheets_deauth() 
+  x <- read_sheet("1LtupNx8yBeJzK6UyGkZ5u-aUAPzU90K9C4r2RTJwWqg") %>%
+    clean_names() %>%
+    select(student) %>%
+    na.omit() %>%
+    sample_n(1) %>%
+    pull(student)
+  x
+}
+
+```
+
